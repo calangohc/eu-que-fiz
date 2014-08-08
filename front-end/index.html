@@ -1,0 +1,58 @@
+﻿<!doctype html>
+<html lang="pt-BR" ng-app>
+<head>
+    <meta charset="utf-8">
+	<title>Eu que Fiz!!</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/okifz.css">
+	<script src="js/angular.min.js"></script>
+</head>
+<body>
+	<div ng-init="project_list = [	{id:1, 	name:'Projeto1', text:'Projeto completo para isso, isso e aquilo que usa o Projeto DisplayPOV como componente.',
+											parts: [{display_name: '595', part_number:'74HC595', type:'IC'},{display_name: 'LED', color:'green', current:'20mA'},
+											        {display_name:'DisplayPOV', type:'Project', project_id: '2'},{display_name:'bateria', type:'source'}],
+											img: 'R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub/
+												/ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAALAAAAAAQAA4AAARe8L1Ekyky67QZ1hLnjM5UUde0ECwLJoExKcpp
+												V0aCcGCmTIHEIUEqjgaORCMxIC6e0CcguWw6aFjsVMkkIr7g77ZKPJjPZqIyd7sJAgVGoEGv2xsBxqNgYPj/gAwXEQA7'
+										   },
+									{id:2, name:'Projeto2', text:'Projeto DisplayPOV', 
+	                                       parts: [{display_name: '595', part_number:'74HC595', type:'IC'},{name:'LED', current:'20mA'},
+										           {name:'Display de LED', type:'LED'},{part_number:'CR2016', name:'Batteria', type:'source'}] }
+										   ]">
+	</div>
+	<div class="container theme-showcase" id="inicio" role="main">
+	<h1>Eu que Fiz!!</h1>
+	<br/>
+	</div>
+	<div id="busca" class="container">
+		<input ng-model="filtroBusca" class="form-control">
+	</div>
+	<br/>
+	<div id="textos" class="panel-group container">
+		<div ng-repeat="project in project_list | filter:filtroBusca" class="panel panel-default jumbotron row">
+			<div class="col-sm-3 tag-line"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=" 
+									   style="width: 200px; height: 200px;" class="img-thumbnail" alt="200x200"></div><!--
+		 --><div class="panel-heading col-sm-9">
+			  <h3 class="panel-title">
+				<a data-toggle="collapse" data-parent="textos" href="#text_box{{project.id}}">
+					{{project.name}}
+				</a>
+				<img ng-src="data:image/gif;base64,{{project.img}}">
+			  </h3>
+			</div><!--
+		 --><div id="text_box{{project.id}}" class="panel-collapse collapse in col-sm-9">
+				<div class="panel-body" style="height: 120px">{{project.text}}
+				</div>
+			</div><!--
+		 --><div class="tag-line">
+				<h4>
+					<span ng-repeat="part in project.parts" class="label label-default part-tag">{{part.display_name}}</span> 
+				</h4>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
