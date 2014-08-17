@@ -1,0 +1,9 @@
+.tag-line {
+	vertical-align: bottom;
+	display: table-cell!important;
+}
+
+.part-tag{
+	margin-left:3px;
+	margin-right:3px;
+}
