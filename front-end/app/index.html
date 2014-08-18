@@ -15,20 +15,11 @@
 	var App = angular.module('EuQueFizApp', []);
 
 	App.controller('EuQueFizDataCtrl', function($scope, $http) {
-		//$http.get('projects_data.json')
-		//	 .then(function(res){
-		//			$scope.project_list = res.data;                
-		//});
-		$scope.project_list = 
-			[	{id:1, 	name:'Projeto1', text:'Projeto completo para isso, isso e aquilo que usa o Projeto DisplayPOV como componente.',
-											parts: [{display_name: '595', part_number:'74HC595', type:'IC'},{display_name: 'LED', color:'green', current:'20mA'},
-											        {display_name:'DisplayPOV', type:'Project', project_id: '2'},{display_name:'bateria', type:'source'}],
-											img: 'R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAALAAAAAAQAA4AAARe8L1Ekyky67QZ1hLnjM5UUde0ECwLJoExKcppV0aCcGCmTIHEIUEqjgaORCMxIC6e0CcguWw6aFjsVMkkIr7g77ZKPJjPZqIyd7sJAgVGoEGv2xsBxqNgYPj/gAwXEQA7'
-										   },
-									{id:2, name:'Projeto2', text:'Projeto DisplayPOV', 
-	                                       parts: [{display_name: '595', part_number:'74HC595', type:'IC'},{name:'LED', current:'20mA'},
-										           {name:'Display de LED', type:'LED'},{part_number:'CR2016', name:'Batteria', type:'source'}] }
-										   ]; //"
+		//carrega dados dos projetos
+		$http.get('../data/project-data.json')
+			 .then(function(res){
+					$scope.project_list = res.data;                
+		});
 	});
 	</script>
 	
