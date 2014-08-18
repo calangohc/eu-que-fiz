@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- 
+Converte imagens em data-url para envio RESTful em uma string 
+http://bocoup.com/weblog/using-datatransfer-with-jquery-events/ 
+-->
+
+<html>
+  <head>
+    <title>File Converter</title>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <style>
+      body {min-height: 800px;}
+    </style>
+    <script type="text/javascript">
+    jQuery(function(){
+     
+      // jQuery creates it's own event object, and it doesn't have a
+      // dataTransfer property yet. This adds dataTransfer to the event object.
+      // Thanks to l4rk for figuring this out!
+      jQuery.event.props.push('dataTransfer');
+     
+      var body = jQuery('body')
+        .bind( 'dragenter dragover', false)
+        .bind( 'drop', function( e ) {
+          e.stopPropagation();
+          e.preventDefault();
+         
+         
+          body.html("<h2>You're welcome ;)</h2>")
+         
+          jQuery.each( e.dataTransfer.files, function(index, file){
+            var fileReader = new FileReader();
+                fileReader.onload = (function(file) {
+                   return function(e) {
+                     body.append('<div class="dataurl"><strong>' + file.fileName + '</strong>' + e.target.result + '</div>')
+                   };
+                })(file);
+            fileReader.readAsDataURL(file);
+          });
+         
+        });
+     
+    });
+    </script>   
+  </head>
+<body> 
+  <h1>Drop one or more files here to convert them to <a href="https://developer.mozilla.org/en/DOM/FileReader#section_10">Data URLs</a></h1>
+</body>
+</html> 
